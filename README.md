@@ -8,6 +8,7 @@ https://github.com/zencartpro/157-modul-sitemap-xml/releases
 Dieses Modul generiert für Google und Bing geeignete XML Sitemaps nach den hier beschriebenen Spezifikationen:
 * https://support.google.com/webmasters/answer/156184?hl=de&topic=8476&ctx=topic
 * https://www.sitemaps.org/
+
 Die Sitemaps können laufend vollautomatisch aktualisiert werden, indem das Script per Cronjob angesteuert wird
 Falls Zusatzmodule wie Testimonial Manager oder News Box Manager im Shop verwendet werden, können auch Sitemaps für die Seiten dieser Module generiert werden.
 
