@@ -16,6 +16,7 @@ webchills - Juni 2022
 
 Bugfix für MySQL in strict mode
 Codekommentare vereinheitlicht
+veraltete Sitemap für News Manager entfernt und mit neuer für News Manager ab 3.1.2 ersetzt
 
 Version 4.1.2
 webchills - Februar 2022
