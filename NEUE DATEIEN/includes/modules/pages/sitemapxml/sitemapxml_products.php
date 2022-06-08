@@ -1,14 +1,14 @@
 <?php
 /**
- * Sitemap XML
- *
- * @package Sitemap XML
- * @copyright Copyright 2005-2015 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * package Sitemap XML
+ * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml_products.php 2019-07-10 08:59:11 webchills $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: sitemapxml_products.php 2022-06-08 20:37:16Z webchills $
  */
+ 
 define('SITEMAPXML_PRODUCTS_IMAGES_SIZE', 'large');
 define('SITEMAPXML_PRODUCTS_IMAGES_ADDITIONAL', 'false'); // true false
 define('SITEMAPXML_PRODUCTS_IMAGES_FUNCTION', 'false'); // true false
@@ -86,7 +86,7 @@ if ($sitemapXML->SitemapOpen('products', $last_date)) {
         preg_match('@src="([^"]*)"@', zen_image($img, '', $width, $height), $image_src);
         $img = $image_src[1];
       } else {
-//        $img = $img;
+
       }
       $images = array(
                       array(
@@ -108,7 +108,7 @@ if ($sitemapXML->SitemapOpen('products', $last_date)) {
     } else {
       $cPath_parm = '';
     }
-//    $info_page = zen_get_info_page($products->fields['products_id']);
+
     $info_page = $products_handler_array[$products->fields['products_type']];
     global $queryCache;
     if (isset($queryCache) && is_object($queryCache) && method_exists($queryCache, 'reset')) {
@@ -122,5 +122,3 @@ if ($sitemapXML->SitemapOpen('products', $last_date)) {
   unset($products);
 }
 unset($catsArray);
-
-// EOF

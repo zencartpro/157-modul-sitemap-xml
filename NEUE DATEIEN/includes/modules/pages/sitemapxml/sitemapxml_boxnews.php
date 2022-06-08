@@ -1,14 +1,12 @@
 <?php
 /**
- * Sitemap XML
- *
- * @package Sitemap XML
- * @copyright Copyright 2005-2012 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2012 Zen Cart Development Team
+ * package Sitemap XML
+ * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @link News Box Manager http://www.zen-cart.com/downloads.php?do=file&id=147
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml_boxnews.php, v 3.2.2 07.05.2012 19:12 AndrewBerezin $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: sitemapxml_boxnews.php 2022-06-08 20:37:16Z webchills $
  */
 
 if ($sitemapXML->dbTableExist('TABLE_BOX_NEWS') && $sitemapXML->dbTableExist('TABLE_BOX_NEWS_CONTENT')) {
@@ -37,7 +35,4 @@ if ($sitemapXML->dbTableExist('TABLE_BOX_NEWS') && $sitemapXML->dbTableExist('TA
     $sitemapXML->SitemapClose();
     unset($news);
   }
-
 }
-
-// EOF

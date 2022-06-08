@@ -1,13 +1,12 @@
 <?php
 /**
- * Sitemap XML
- *
- * @package Sitemap XML
+ * package Sitemap XML
  * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml.php 2019-07-10 07:57:33 webchills $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: sitemapxml.php 2022-06-08 20:37:16Z webchills $
  */
 
 define('TABLE_SITEMAPXML_TEMP', DB_PREFIX . 'sitemapxml_temp');
@@ -565,7 +564,7 @@ class zen_SiteMapXML {
   public function _SitemapXMLHeader() {
     $header = '';
     $header .= '<?xml version="1.0" encoding="UTF-8"?'.'>' . "\n";
-//    $header .= ($this->stylesheet != '' ? '<?xml-stylesheet type="text/xsl" href="' . HTTP_SERVER . DIR_WS_CATALOG . $this->stylesheet . '"?'.'>' . "\n" : "");
+
     $header .= ($this->stylesheet != '' ? '<?xml-stylesheet type="text/xsl" href="' . DIR_WS_CATALOG . $this->stylesheet . '"?'.'>' . "\n" : "");
     switch ($this->sitemapType) {
       case 'index':
@@ -672,21 +671,20 @@ class zen_SiteMapXML {
       curl_close($ch);
       if (empty($info['http_code'])) {
         echo sprintf(TEXT_ERROR_CURL_NO_HTTPCODE, $url) . '<br />';
-//        return false;
+
       } elseif ($info['http_code'] != 200) {
-//        $http_codes = @parse_ini_file('includes/http_responce_code.ini');
-//        echo "cURL Error: Error http_code '<b>" . $info['http_code'] . " " . $http_codes[$info['http_code']] . "</b>' reading '" . $url . "'. " . '<br />';
+
         echo sprintf(TEXT_ERROR_CURL_ERR_HTTPCODE, $info['http_code'], $url) . '<br />';
-//        return false;
+
       }
       if ($read == 'page') {
         if ($info['size_download'] == 0) {
           echo sprintf(TEXT_ERROR_CURL_0_DOWNLOAD, $url) . '<br />';
-//          return false;
+
         }
         if (isset($info['download_content_length']) && $info['download_content_length'] > 0 && $info['download_content_length'] != $info['size_download']) {
           echo sprintf(TEXT_ERROR_CURL_ERR_DOWNLOAD, $url, $info['size_download'], $info['download_content_length']) . '<br />';
-//          return false;
+
         }
         $info['html_page'] = $result;
       }
@@ -707,9 +705,6 @@ class zen_SiteMapXML {
   }
 
   public function _SitemapReSetFile() {
-//    $this->sitemapFile = null;
-//    $this->sitemapType = null;
-//    $this->sitemapFileName = null;
     $this->sitemapFileBuffer = '';
     $this->sitemapFileItems = 0;
     $this->sitemapFileSize = 0;
@@ -772,7 +767,7 @@ class zen_SiteMapXML {
       $this->fp = fopen($path . $filename, 'w+');
     }
     if (!$this->fp) {
-//      echo '<span style="font-weight:bold;color:red;">' . sprintf(TEXT_FAILED_TO_OPEN, $filename) . '</span>' . '<br />';
+
       if (!is_file($path . $filename)) {
         echo '<span style="font-weight:bold;color:red;">' . sprintf(TEXT_FAILED_TO_CREATE, $path . $filename) . '</span>' . '<br />';
       } else {
@@ -816,7 +811,7 @@ class zen_SiteMapXML {
   }
 
   public function _fileSize($fn) {
-//    clearstatcache(true, $fn);
+
     clearstatcache();
     $fs = filesize($fn);
     return $fs;

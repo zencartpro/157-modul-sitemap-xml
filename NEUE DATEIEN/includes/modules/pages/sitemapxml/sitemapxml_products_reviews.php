@@ -1,13 +1,12 @@
 <?php
 /**
- * Sitemap XML
- *
- * @package Sitemap XML
- * @copyright Copyright 2005-2015 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2015 Zen Cart Development Team
+ * package Sitemap XML
+ * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml_products_reviews.php, v 1.1 31.01.2015 15:29:52 AndrewBerezin $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: sitemapxml_products_reviews.php 2022-06-08 20:49:16Z webchills $
  */
 
 echo '<h3>' . TEXT_HEAD_PRODUCTS_REVIEWS . '</h3>';
@@ -25,16 +24,10 @@ if ($sitemapXML->SitemapOpen('products_reviews', $last_date)) {
             AND p.products_status=1
             AND r.status = 1
             AND rd.languages_id IN (" . $sitemapXML->getLanguagesIDs() . ")
-          GROUP BY r.products_id" .
+          GROUP BY r.products_id,rd.languages_id" .
           (SITEMAPXML_PRODUCTS_REVIEWS_ORDERBY != '' ? " ORDER BY " . SITEMAPXML_PRODUCTS_REVIEWS_ORDERBY : '');
   $reviews = $db->Execute($sql);
-/*
-	if (zen_not_null($result['last_modified']) ){
-		$lastmod = $reviews->fields['last_modified'];
-	} else {
-		$lastmod = $reviews->fields['date_added'];
-	}
-*/
+
   $sitemapXML->SitemapSetMaxItems($reviews->RecordCount());
   while (!$reviews->EOF) {
     $sitemapXML->writeItem(FILENAME_PRODUCT_REVIEWS, 'products_id=' . $reviews->fields['products_id'], $reviews->fields['languages_id'], $reviews->fields['last_date'], SITEMAPXML_PRODUCTS_REVIEWS_CHANGEFREQ);
@@ -43,5 +36,3 @@ if ($sitemapXML->SitemapOpen('products_reviews', $last_date)) {
   $sitemapXML->SitemapClose();
   unset($reviews);
 }
-
-// EOF

@@ -1,15 +1,14 @@
 <?php
 /**
- * Common Template
- *
- * outputs the html header. i,e, everything that comes before the \</head\> tag <br />
- *
- * @package templateSystem
- * @copyright Copyright 2003-2019 Zen Cart Development Team
+ * package Sitemap XML
+ * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: html_header.php 2019-07-10 08:30:49Z webchills $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: html_header.php 2022-06-08 20:37:16Z webchills $
  */
+ 
 if (is_file(DIR_WS_CLASSES . 'Mobile_Detect.php')) {
   if (!class_exists('Mobile_Detect')) {
     include_once(DIR_WS_CLASSES . 'Mobile_Detect.php');

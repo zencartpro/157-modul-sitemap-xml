@@ -1,14 +1,12 @@
 <?php
 /**
- * Sitemap XML
- *
- * @package Sitemap XML
- * @copyright Copyright 2005-2015 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2015 Zen Cart Development Team
+ * package Sitemap XML
+ * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @link hideCategories http://www.zen-cart.com/downloads.php?do=file&id=254
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml_cats2man.php v 1.1 27.03.2015 17:07:46 AndrewBerezin $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: sitemapxml_cats2man.php 2022-06-08 20:37:16Z webchills $
  */
 
 echo '<h3>' . TEXT_HEAD_CATS2MAN . '</h3>';
@@ -54,7 +52,7 @@ if ($sitemapXML->SitemapOpen('cats2man', $last_date)) {
     }
     if ($products->fields['total'] > 1) {
       $cat_path = $sitemapXML->GetFullcPath($categories->fields['categories_id']);
-    //echo '<pre>';var_dump($categories->fields);echo '</pre>';
+    
       $sql = "SELECT DISTINCT m.manufacturers_id
               FROM " . TABLE_PRODUCTS . " p,
                    " . TABLE_PRODUCTS_TO_CATEGORIES . " p2c,
@@ -63,10 +61,10 @@ if ($sitemapXML->SitemapOpen('cats2man', $last_date)) {
                 AND p.manufacturers_id = m.manufacturers_id
                 AND p.products_id = p2c.products_id
                 AND p2c.categories_id in (" . implode(',', $subcategories_array) . ")";
-    //echo '<pre>';var_dump($sql);echo '</pre>';
+    
       $manufacturers = $db->Execute($sql);
       while (!$manufacturers->EOF) {
-        //echo '<pre>';var_dump($manufacturers->fields);echo '</pre>';
+        
         $sitemapXML->writeItem(FILENAME_DEFAULT, 'cPath=' . $cat_path . '&filter_id=' . $manufacturers->fields['manufacturers_id'], $categories->fields['language_id'], $categories->fields['last_date'], SITEMAPXML_CATEGORIES_CHANGEFREQ, '');
         $sql = "SELECT COUNT(*) AS total
                 FROM " . TABLE_PRODUCTS . " p
@@ -77,7 +75,7 @@ if ($sitemapXML->SitemapOpen('cats2man', $last_date)) {
         $products = $db->Execute($sql);
         $total_pages = ceil($products->fields['total']/MAX_DISPLAY_PRODUCTS_LISTING);
         for ($ind_page=2; $ind_page <= $total_pages; $ind_page++) {
-  //        echo '<pre>';var_dump($ind_page);echo '</pre>';
+  
           $sitemapXML->writeItem(FILENAME_DEFAULT, 'cPath=' . $cat_path . '&filter_id=' . $manufacturers->fields['manufacturers_id'] . '&page=' . $ind_page, $categories->fields['language_id'], $categories->fields['last_date'], SITEMAPXML_CATEGORIES_CHANGEFREQ);
         }
         $manufacturers->MoveNext();
@@ -89,5 +87,3 @@ if ($sitemapXML->SitemapOpen('cats2man', $last_date)) {
   $sitemapXML->SitemapClose();
   unset($categories);
 }
-
-// EOF

@@ -1,4 +1,4 @@
-Sitemap XML 4.1.2 für Zen Cart 1.5.7 deutsch
+Sitemap XML 4.1.3 für Zen Cart 1.5.7 deutsch
 
 Dieses Modul generiert für Google und Bing geeignete XML Sitemaps nach den hier beschriebenen Spezifikationen:
 https://support.google.com/webmasters/answer/156184?hl=de&topic=8476&ctx=topic
@@ -10,6 +10,12 @@ Anpassung und Überarbeitung des Moduls Sitemap XML 3.9.5 von Andrew Berezin zur
 
 
 Changelog:
+
+Version 4.1.3
+webchills - Juni 2022
+
+Bugfix für MySQL in strict mode
+Codekommentare vereinheitlicht
 
 Version 4.1.2
 webchills - Februar 2022
@@ -55,7 +61,7 @@ DELETE FROM configuration_language WHERE configuration_key LIKE '%SITEMAPXML%';
 DELETE FROM configuration_group WHERE configuration_group_title = 'Sitemap XML';
 DELETE FROM admin_pages WHERE language_key LIKE '%SITEMAPXML%';
 
-Erst dann Version 4.1.2 installieren
+Erst dann Version 4.1.3 installieren
 
 Die Installation ist sehr einfach, es werden keinerlei bestehende Dateien geändert oder überschrieben.
 
@@ -74,6 +80,10 @@ Um die Sitemaps automatisch zu aktualisieren einen Cronjob anlegen, der das Scri
 https://www.meinshop.de/index.php?main_page=sitemapxml&rebuild=yes&ping=yes&token=abc123abc123
 
 Infos dazu unter Tools > Sitemap XML
+
+
+UPDATE VON VERSION 4.1.2
+Einfach die 4.1.3 Dateien hochladen und alle bestehenden 4.1.2 Dateien damit überschreiben. Modul aktualisiert die Versionsnummer dann automatisch.
 
 
 DEINSTALLATION:

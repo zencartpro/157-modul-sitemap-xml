@@ -1,18 +1,13 @@
 <?php
 /**
- * Sitemap XML
- *
- * @package Sitemap XML
+ * package Sitemap XML
  * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2016 Zen Cart Development Team
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
- * @link hideCategories http://www.zen-cart.com/downloads.php?do=file&id=254
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml_categories.php, v 3.7 07.07.2016 11:25:41 AndrewBerezin $
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: sitemapxml_categories.php 2022-06-08 20:37:16Z webchills $
  */
-// BOF hideCategories
-// BOF products_in_subcategories
-// BOF categories_paging
 
 echo '<h3>' . TEXT_HEAD_CATEGORIES . '</h3>';
 // BOF hideCategories
@@ -89,5 +84,3 @@ if ($sitemapXML->SitemapOpen('categories', $last_date)) {
   $sitemapXML->SitemapClose();
   unset($categories);
 }
-
-// EOF

@@ -1,14 +1,14 @@
 <?php
 /**
- * Sitemap XML
- *
- * @package Sitemap XML
- * @copyright Copyright 2005-2012 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2012 Zen Cart Development Team
- * @license http://www.zen-cart.com/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml_video_products.php, v 2.3.1 21.07.2010 9:18:18 AndrewBerezin $
+ * package Sitemap XML
+ * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
+ * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * Zen Cart German Version - www.zen-cart-pro.at
+ * @copyright Portions Copyright 2003 osCommerce
+ * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
+ * @version $Id: sitemapxml_video_products.php 2022-06-08 20:37:16Z webchills $
  */
-// http://www.google.com/support/webmasters/bin/answer.py?hl=en&answer=80472
+ 
 @define('SITEMAPXML_VIDEO_FAMILY_FRIENDLY', 'yes'); // yes no
 @define('SITEMAPXML_VIDEO_THUMBNAIL_SIZE', 'medium'); // small medium large
 @define('SITEMAPXML_VIDEO_PLAYER', 'player.swf?file=/%s');
@@ -27,13 +27,13 @@ if (function_exists('zen_get_products_video_file')) {
                                 LEFT JOIN " . TABLE_META_TAGS_PRODUCTS_DESCRIPTION . " pm ON (p.products_id = pm.products_id AND pd.language_id = pm.language_id)
                               WHERE p.products_status = '1'
                                 AND pd.language_id IN (" . $zen_SiteMapXML->getLanguagesIDs() . ") ");
-  //  $zen_SiteMapXML->SitemapSetMaxItems($products->RecordCount());
+  
     $zen_SiteMapXML->SitemapSetMaxItems(0);
     while (!$products->EOF) {
       $langParm = $zen_SiteMapXML->getLanguageParameter($products->fields['language_id']);
       if ($langParm !== false) {
         if ($videoFile = zen_get_products_video_file($products->fields['products_id'], $zen_SiteMapXML->getLanguageDirectory($products->fields['language_id']))) {
-//echo '<pre>'.__FUNCTION__.':'.__LINE__."\n";var_dump($products->fields['products_id'], $videoFile);echo '</pre>';
+
           $link = zen_href_link(zen_get_info_page($products->fields['products_id']), 'products_id=' . $products->fields['products_id'] . $langParm, 'NONSSL', false);
 
           $videoContentLoc = DIR_WS_VIDEOS . $videoFile;
@@ -57,28 +57,27 @@ if (function_exists('zen_get_products_video_file')) {
           } else {
             $videoThumbnailLoc = '';
           }
-//echo '<pre>'.__FUNCTION__.':'.__LINE__."\n";var_dump(DIR_WS_IMAGES . $products_image, $products_image_medium, $products_image_large);echo '</pre>';
-//echo '<pre>'.__FUNCTION__.':'.__LINE__."\n";var_dump($match, $videoThumbnailLoc);echo '</pre>';
+
           if ($products->fields['metatags_title'] != null && $products->fields['metatags_title'] != '') {
             $videoTitle = $products->fields['metatags_title'];
           } else {
             $videoTitle = strip_tags($products->fields['products_name']);
           }
-//          $videoTitle = $zen_SiteMapXML->_clear_string($videoTitle);
+
           if (strlen($videoTitle) > 100) {
             $videoTitle = zen_trunc_string($videoTitle, 100, false);
-//            $videoTitle = mb_substr($videoTitle, 0, 100);
+
           }
-//          $videoTitle = '<![CDATA[ ' . $videoTitle . ' ]]>';
+
           if ($products->fields['metatags_description'] != null && $products->fields['metatags_description'] != '') {
             $videoDescription = $products->fields['metatags_description'];
           } else {
           	$videoDescription = strip_tags($products->fields['products_description']);
           }
-//          $videoDescription = $zen_SiteMapXML->_clear_string($videoDescription);
+
           if (strlen($videoDescription) > SITEMAPXML_VIDEO_DESCRIPTION_MAXSIZE) {
             $videoDescription = zen_trunc_string($videoDescription, SITEMAPXML_VIDEO_DESCRIPTION_MAXSIZE, false);
-//            $videoDescription = mb_substr($videoTitle, 0, SITEMAPXML_VIDEO_DESCRIPTION_MAXSIZE);
+
           }
           $videoTags = '';
           if ($products->fields['metatags_keywords'] != null && $products->fields['metatags_keywords'] != '') {
@@ -94,7 +93,7 @@ if (function_exists('zen_get_products_video_file')) {
           if ($videoDuration = GetFLVDuration(DIR_FS_CATALOG . $videoContentLoc)) {
           	$videoDuration = intval($videoDuration/1000);
           }
-//echo '<pre>'.__FUNCTION__.':'.__LINE__."\n";var_dump($videoContentLoc, $videoDuration);echo '</pre>';
+
 
           $videomapXML = '';
           $videomapXML .= '<video:video>' . "\n";
@@ -124,5 +123,3 @@ if (function_exists('zen_get_products_video_file')) {
     unset($products);
   }
 }
-
-// EOF
