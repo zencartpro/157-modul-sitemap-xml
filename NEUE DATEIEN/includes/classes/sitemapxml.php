@@ -2,11 +2,11 @@
 /**
  * package Sitemap XML
  * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sitemapxml.php 2022-06-08 20:37:16Z webchills $
+ * @version $Id: sitemapxml.php 2023-05-17 10:37:16Z webchills $
  */
 
 define('TABLE_SITEMAPXML_TEMP', DB_PREFIX . 'sitemapxml_temp');
@@ -29,13 +29,13 @@ class zen_SiteMapXML {
   private $checkDuplicates;
   private $checkurl;
 
-  private $languageSession = array();
-  private $languages = array();
+  private $languageSession = [];
+  private $languages = [];
   private $languagesIDs;
   private $languagesCount = 0;
   private $default_language_id = 0;
 
-  private $sitemapItems = array();
+  private $sitemapItems = [];
   private $submitFlag = true;
   private $inline = false;
   private $ping = false;
@@ -73,18 +73,18 @@ class zen_SiteMapXML {
   public function __construct($inline=false, $ping=false, $rebuild=false, $genxml=true) {
     global $db;
     $this->statisticTotalTime = microtime(true);
-    $this->statisticTotalQueries = $db->count_queries;
-    $this->statisticTotalQueriesTime = $db->total_query_time;
+    $this->statisticTotalQueries = $db->queryCount();
+    $this->statisticTotalQueriesTime = $db->queryTime();
     $this->statisticModuleTime = microtime(true);
-    $this->statisticModuleQueries = $db->count_queries;
-    $this->statisticModuleQueriesTime = $db->total_query_time;
+    $this->statisticModuleQueries = $db->queryCount();
+    $this->statisticModuleQueriesTime = $db->queryTime();
 
     $this->sitemap = 'sitemap';
     $this->videomap = 'videomap';
     $this->sitemapindex = SITEMAPXML_SITEMAPINDEX . '.xml';
     $this->compress = (SITEMAPXML_COMPRESS == 'true' ? true : false);
-    $this->duplicatedLinks = array();
-    $this->sitemapItems = array();
+    $this->duplicatedLinks = [];
+    $this->sitemapItems = [];
     $this->dir_ws = trim(SITEMAPXML_DIR_WS);
     $this->dir_ws = rtrim($this->dir_ws, '/');
     if ($this->dir_ws != '') {
@@ -124,7 +124,7 @@ class zen_SiteMapXML {
                                   'languages_id' => $_SESSION['languages_id'],
                                   'languages_code' => $_SESSION['languages_code'],
                                   );
-    $languagesIDsArray  = array();
+    $languagesIDsArray  = [];
     foreach ($lng->catalog_languages as $language) {
       $this->languages[$language['id']] = array(
                                                 'directory' => $language['directory'],
@@ -142,7 +142,7 @@ class zen_SiteMapXML {
     $this->languagesIDs = implode(',', $languagesIDsArray );
     $this->languagesCount = sizeof($languagesIDsArray );
 
-    $this->sitemapItems = array();
+    $this->sitemapItems = [];
 
     $timezone = date('O');
     $this->timezone = substr($timezone, 0, 3) . ':' . substr($timezone, 3, 2);
@@ -293,8 +293,8 @@ class zen_SiteMapXML {
     $this->_SitemapCloseFile();
     if ($this->sitemapFileItemsTotal > 0) {
       $total_time = microtime(true) - $this->statisticModuleTime;
-      $total_queries = $db->count_queries - $this->statisticModuleQueries;
-      $total_queries_time = $db->total_query_time - $this->statisticModuleQueriesTime;
+      $total_queries = $db->queryCount() - $this->statisticModuleQueries;
+      $total_queries_time = $db->queryTime() - $this->statisticModuleQueriesTime;
       echo sprintf(TEXT_TOTAL_SITEMAP, ($this->sitemapFileNameNumber+1), $this->sitemapFileItemsTotal, $this->sitemapFileSizeTotal, $this->timefmt($total_time), $total_queries, $this->timefmt($total_queries_time)) . '<br />';
     }
     $this->_SitemapReSet();
@@ -304,7 +304,7 @@ class zen_SiteMapXML {
   public function GenerateSitemapIndex() {
     global $db;
     if ($this->genxml) {
-      $sitemapFiles = array();
+      $sitemapFiles = [];
       if ($files = glob($this->savepath . $this->sitemap . '*' . '.xml')) {
         $sitemapFiles = array_merge($sitemapFiles, $files);
       }
@@ -383,8 +383,8 @@ class zen_SiteMapXML {
     // Incorporate ZC function(s) to collect this information.
     return zen_get_generated_category_path_rev($cID);
     global $db;
-    static $parent_cache = array();
-    $cats = array();
+    static $parent_cache = [];
+    $cats = [];
     $cats[] = $cID;
     $sql = "SELECT parent_id, categories_id
             FROM " . TABLE_CATEGORIES . "
@@ -700,7 +700,7 @@ class zen_SiteMapXML {
     $this->sitemapFileSizeTotal = 0;
     $this->sitemapFileNameNumber = 0;
     $this->sitemapFileItemsMax = 0;
-    $this->duplicatedLinks = array();
+    $this->duplicatedLinks = [];
     return true;
   }
 
@@ -726,8 +726,8 @@ class zen_SiteMapXML {
   public function statisticModuleReset() {
     global $db;
     $this->statisticModuleTime = microtime(true);
-    $this->statisticModuleQueries = $db->count_queries;
-    $this->statisticModuleQueriesTime = $db->total_query_time;
+    $this->statisticModuleQueries = $db->queryCount();
+    $this->statisticModuleQueriesTime = $db->queryTime();
   }
 
   public function _checkDuplicateLoc($loc) {

@@ -4,10 +4,10 @@
  *
  * @package Sitemap XML Feed
  * @copyright Copyright 2005-2018 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2023 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml.php 2021-06-21 09:59:18 webchills $
+ * @version $Id: sitemapxml.php 2023-05-17 10:03:18 webchills $
  */
 
 require('includes/application_top.php');
@@ -141,9 +141,9 @@ label.plugin_active {
   text-align: right;
 }
 </style>
-<script type="text/javascript" src="includes/menu.js"></script>
-<script type="text/javascript" src="includes/general.js"></script>
-<script type="text/javascript">
+<script src="includes/menu.js"></script>
+<script src="includes/general.js"></script>
+<script>
   function init()
   {
     cssjsmenu('navbar');
@@ -154,7 +154,7 @@ label.plugin_active {
     }
   }
 </script>
-<script type="text/javascript">
+<script>
 function getFormFields(obj) {
   var getParms = "";
   for (var i=0; i<obj.childNodes.length; i++) {
@@ -226,14 +226,14 @@ function getFormFields(obj) {
                   <?php echo zen_draw_form('pingSE', FILENAME_SITEMAPXML, '', 'post', 'id="pingSE" target="_blank" onsubmit="javascript:window.open(\'' .  zen_catalog_href_link(FILENAME_SITEMAPXML, $start_parms) . '\'+getFormFields(this), \'sitemapPing\', \'resizable=1,statusbar=5,width=860,height=800,top=0,left=0,scrollbars=yes,toolbar=yes\');return false;"'); ?>
                     <?php echo zen_draw_checkbox_field('rebuild', 'yes', false, '', 'id="rebuild"'); ?>
                     <label for="rebuild"><?php echo TEXT_SITEMAPXML_CHOOSE_PARAMETERS_REBUILD; ?></label>
-                    <br class="clearBoth" />
+                    <br class="clearBoth">
                     <?php echo zen_draw_checkbox_field('ping', 'yes', false, '', 'id="ping"'); ?>
                     <label for="ping"><?php echo TEXT_SITEMAPXML_CHOOSE_PARAMETERS_PING; ?></label>
-                    <br class="clearBoth" />
+                    <br class="clearBoth">
                     <?php echo '<button type="submit" title="' . zen_catalog_href_link(FILENAME_SITEMAPXML) . '">' . IMAGE_SEND . '</button>'; ?>
                   </form>
                 </fieldset>
-                <br class="clearBoth" />
+                <br class="clearBoth">
                 <h3><?php echo TEXT_SITEMAPXML_PLUGINS_LIST; ?></h3>
                 <div style="border: solid 1px; padding: 4px;">
                 <fieldset id="plugins">
@@ -241,7 +241,7 @@ function getFormFields(obj) {
 <?php
 echo zen_draw_form('selectPlugins', FILENAME_SITEMAPXML, '', 'post', 'id="selectPlugins"');
 echo zen_draw_hidden_field('action', 'select_plugins');
-if (!($plugins_files = glob(DIR_FS_CATALOG_MODULES . 'pages/sitemapxml/' . 'sitemapxml_*.php'))) $plugins_files = array();
+if (!($plugins_files = glob(DIR_FS_CATALOG_MODULES . 'pages/sitemapxml/' . 'sitemapxml_*.php'))) $plugins_files = [];
 $plugins_files_active = explode(';', SITEMAPXML_PLUGINS);
 foreach ($plugins_files as $plugin_file) {
   $plugin_file = basename($plugin_file);
@@ -249,13 +249,13 @@ foreach ($plugins_files as $plugin_file) {
   $active = in_array($plugin_file, $plugins_files_active);
   echo zen_draw_checkbox_field('plugin[]', $plugin_file, $active, '', 'id="plugin-' . $plugin_name . '"');
 ?>
-                    <label for="<?php echo 'plugin-' . $plugin_name . ''; ?>" class="plugin<?php echo ($active ? '_active' : ''); ?>"><?php echo $plugin_file; ?></label>
+                  <label for="<?php echo 'plugin-' . $plugin_name . ''; ?>" class="plugin<?php echo ($active ? '_active' : ''); ?>"><?php echo $plugin_file; ?></label><br>
 <?php } ?>
-                    <br class="clearBoth" />
+                    <br class="clearBoth">
                     <button type="submit"><?php echo IMAGE_SAVE; ?></button>
                   </form>
                 </fieldset>
-                <br class="clearBoth" />
+                <br class="clearBoth">
                 <fieldset>
                   <legend><?php echo TEXT_SITEMAPXML_FILE_LIST; ?></legend>
                   <table style="width:100%">
@@ -271,8 +271,8 @@ foreach ($plugins_files as $plugin_file) {
                     </tr>
 <?php
 $indexFile = SITEMAPXML_SITEMAPINDEX . (SITEMAPXML_COMPRESS == 'true' ? '.xml.gz' : '.xml');
-if (!($sitemapFiles = glob(DIR_FS_CATALOG . 'sitemap' . '*' . '.xml'))) $sitemapFiles = array();
-if (!($sitemapFilesGZ = glob(DIR_FS_CATALOG . 'sitemap' . '*' . '.xml.gz'))) $sitemapFilesGZ = array();
+if (!($sitemapFiles = glob(DIR_FS_CATALOG . 'sitemap' . '*' . '.xml'))) $sitemapFiles = [];
+if (!($sitemapFilesGZ = glob(DIR_FS_CATALOG . 'sitemap' . '*' . '.xml.gz'))) $sitemapFilesGZ = [];
 $sitemapFiles = array_merge($sitemapFiles, $sitemapFilesGZ);
 if (SITEMAPXML_DIR_WS != '') {
   $sitemapxml_dir_ws = SITEMAPXML_DIR_WS;
@@ -355,7 +355,7 @@ echo zen_draw_form('delete_file', FILENAME_SITEMAPXML, '', 'post', 'onsubmit="re
 }
 ?>
                   </table>
-                  <br /><a class="link_button" title="<?php echo TEXT_SITEMAPXML_RELOAD_WINDOW; ?>" href="javascript: window.location.reload()"><?php echo TEXT_SITEMAPXML_RELOAD_WINDOW; ?></a>
+                  <br><a class="link_button" title="<?php echo TEXT_SITEMAPXML_RELOAD_WINDOW; ?>" href="javascript: window.location.reload()"><?php echo TEXT_SITEMAPXML_RELOAD_WINDOW; ?></a>
                 </fieldset>
                  </div>
                </td>
