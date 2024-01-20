@@ -4,10 +4,10 @@
  *
  * @package Sitemap XML Feed
  * @copyright Copyright 2005-2018 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2023 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml.php 2023-05-17 10:03:18 webchills $
+ * @version $Id: sitemapxml.php 2024-01-20 18:03:18 webchills $
  */
 
 require('includes/application_top.php');
@@ -82,10 +82,7 @@ if (zen_not_null($action)) {
 <!DOCTYPE html>
 <html <?php echo HTML_PARAMS; ?>>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=<?php echo CHARSET; ?>">
-<title><?php echo HEADING_TITLE; ?></title>
-<link rel="stylesheet" type="text/css" href="includes/stylesheet.css">
-<link rel="stylesheet" type="text/css" href="includes/cssjsmenuhover.css" media="all" id="hoverJS">
+    <?php require DIR_WS_INCLUDES . 'admin_html_head.php'; ?>
 <style type="text/css">
 .index {
   font-weight: bold;
@@ -141,19 +138,6 @@ label.plugin_active {
   text-align: right;
 }
 </style>
-<script src="includes/menu.js"></script>
-<script src="includes/general.js"></script>
-<script>
-  function init()
-  {
-    cssjsmenu('navbar');
-    if (document.getElementById)
-    {
-      var kill = document.getElementById('hoverJS');
-      kill.disabled = true;
-    }
-  }
-</script>
 <script>
 function getFormFields(obj) {
   var getParms = "";
@@ -188,7 +172,7 @@ function getFormFields(obj) {
 }
 </script>
 </head>
-<body onload="init()">
+<body>
 <!-- header //-->
 <?php require(DIR_WS_INCLUDES . 'header.php'); ?>
 <!-- header_eof //-->
@@ -384,8 +368,7 @@ echo zen_draw_form('delete_file', FILENAME_SITEMAPXML, '', 'post', 'onsubmit="re
 <!-- body_eof //-->
 
 <!-- footer //-->
-<?php require(DIR_WS_INCLUDES . 'footer.php'); ?>
-<!-- footer_eof //-->
+<?php require DIR_WS_INCLUDES . 'footer.php'; ?>
 </body>
 </html>
-<?php require(DIR_WS_INCLUDES . 'application_bottom.php'); ?>
+<?php require DIR_WS_INCLUDES . 'application_bottom.php'; ?>
