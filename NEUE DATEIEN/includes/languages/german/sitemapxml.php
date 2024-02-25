@@ -13,7 +13,7 @@ define('TEXT_FAILED_TO_CREATE', 'Datei "%s" kann nicht angelegt werden. Sie müs
 define('TEXT_FAILED_TO_CHMOD', 'Datei "%s" hat keine Schreibrechte. Sie müssen die Rechte auf chmod 666 setzen.');
 define('TEXT_HEAD_SITEMAP_INDEX', 'Sitemap Index');
 define('TEXT_HEAD_SITEMAP_INDEX_NONE', 'Sitemap Index nicht generiert: keine sitemaps gefunden (kein Plugin ausgewählt)');
-define('TEXT_HEAD_PING', 'Ping');
+
 define('TEXT_ERROR_CURL_NOT_FOUND', 'CURL Funktionen nicht gefunden - erforderlich für ping/checkURL Funktion');
 define('TEXT_ERROR_CURL_INIT', 'cURL Error: init cURL');
 define('TEXT_ERROR_CURL_EXEC', 'cURL Error: "<b>%s</b>" reading "%s"');

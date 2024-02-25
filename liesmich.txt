@@ -1,4 +1,4 @@
-Sitemap XML 4.1.4 für Zen Cart 1.5.7g deutsch
+Sitemap XML 4.2.0 für Zen Cart 1.5.7 deutsch
 
 Dieses Modul generiert für Google und Bing geeignete XML Sitemaps nach den hier beschriebenen Spezifikationen:
 https://support.google.com/webmasters/answer/156184?hl=de&topic=8476&ctx=topic
@@ -6,10 +6,19 @@ https://www.sitemaps.org/
 Die Sitemaps können laufend vollautomatisch aktualisiert werden, indem das Script per Cronjob angesteuert wird
 Falls Zusatzmodule wie Testimonial Manager oder News Box Manager im Shop verwendet werden, können auch Sitemaps für die Seiten dieser Module generiert werden.
 
-Anpassung und Überarbeitung des Moduls Sitemap XML 3.9.5 von Andrew Berezin zur Verwendung in der deutschen Zen Cart Version 1.5.7g
+Anpassung und Überarbeitung des Moduls Sitemap XML 3.9.5 von Andrew Berezin zur Verwendung in der deutschen Zen Cart Version 1.5.7
+
+Dieses Modul setzt mindestens Zen Cart 1.5.7g deutsch voraus!
 
 
 Changelog:
+
+Version 4.2.0
+webchills - Februar 2024
+
+Anpassungen für 1.5.7h und PHP 8.2.x
+Ping Funktionalität entfernt, da von den Suchmaschinen nicht mehr unterstützt
+Anleitung aktualisiert
 
 Version 4.1.3
 webchills - Dezember 2023
@@ -56,7 +65,7 @@ https://www.zen-cart.com/downloads.php?do=file&id=367
 INSTALLATION:
 
 WICHTIG:
-Falls im Shop bereits eine ältere Version dieses Moduls (z.B. die amerikanische Version 3.9.5 oder älter) verwendet wird, dann vor der Installation dieses Moduls das alte Modul komplett entfernen.
+Falls im Shop bereits eine ältere Version dieses Moduls älter als 4.0.0 (z.B. die amerikanische Version 3.9.5 oder älter) verwendet wird, dann vor der Installation dieses Moduls das alte Modul komplett entfernen.
 Komplett entfernen bedeutet:
 Alle, wirklich alle von diesem alten Modul angelegten Dateien vom Server löschen
 Und dann auch die Datenbankeinträge des alten Moduls komplett entfernen.
@@ -67,7 +76,7 @@ DELETE FROM configuration_language WHERE configuration_key LIKE '%SITEMAPXML%';
 DELETE FROM configuration_group WHERE configuration_group_title = 'Sitemap XML';
 DELETE FROM admin_pages WHERE language_key LIKE '%SITEMAPXML%';
 
-Erst dann Version 4.1.4 installieren
+Erst dann Version 4.2.0 installieren
 
 Die Installation ist sehr einfach, es werden keinerlei bestehende Dateien geändert oder überschrieben.
 
@@ -83,13 +92,16 @@ Nun unter Konfiguration > Sitemap XML Konfiguration wie gewünscht einstellen.
 Und dann unter Tools > Sitemap XML die Sitemaps generieren.
 
 Um die Sitemaps automatisch zu aktualisieren einen Cronjob anlegen, der das Script regelmäßig aufruft, z.B.
-https://www.meinshop.de/index.php?main_page=sitemapxml&rebuild=yes&ping=yes&token=abc123abc123
+https://www.meinshop.de/index.php?main_page=sitemapxml&rebuild=yes&token=abc123abc123
 
 Infos dazu unter Tools > Sitemap XML
 
 
-UPDATE VON VERSION 4.1.3
-Einfach die 4.1.4 Dateien hochladen und alle bestehenden 4.1.3 Dateien damit überschreiben. Modul aktualisiert die Versionsnummer dann automatisch.
+UPDATE VON VERSION 4.x
+Einfach die 4.2.0 Dateien hochladen und alle bestehenden 4.x Dateien damit überschreiben. Modul aktualisiert die Versionsnummer dann automatisch.
+
+Falls Sie für das Generieren der Sitemaps bereits einen Cronjob eingerichtet haben, beachten Sie bitte, dass die Ping Funktionalität in Version 4.2.0 entfernt wurde, da die Suchmaschinen das nicht mehr unterstützen.
+Sollte Ihre Cronjob URL also noch &ping=yes enthalten, dann entfernen Sie das aus Ihrer URL!
 
 
 DEINSTALLATION:

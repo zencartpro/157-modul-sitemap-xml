@@ -1,0 +1,13 @@
+.index, label.plugin_active, form#selectPlugins input.selected {
+    font-weight: bold;
+}
+.zero {
+    font-style: italic;
+}
+label {
+    font-weight: normal;
+}
+#overviewTips {
+    border: solid 1px #000000;
+    padding: 1em;
+}

@@ -2,11 +2,11 @@
 /**
  * package Sitemap XML
  * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2022 Zen Cart Development Team
+ * @copyright Copyright 2003-2024 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: 4_0_0.php 2022-06-08 20:37:16Z webchills $
+ * @version $Id: 4_0_0.php 2023-02-25 17:58:16Z webchills $
  */
  
 $db->Execute(" SELECT @gid:=configuration_group_id
@@ -26,7 +26,6 @@ $db->Execute("INSERT IGNORE INTO ".TABLE_CONFIGURATION." (configuration_title, c
 ('Using parameter language in links', 'SITEMAPXML_USE_LANGUAGE_PARM', 'true', 'Using parameter language in links:<br />true - normally use it,<br />all - using for all langusges including pages for default language,<br />false - don\'t use it', @gid, 9, now(), now(), '', 'zen_cfg_select_option(array(\'true\', \'all\', \'false\'),'),
 ('Check Duplicates', 'SITEMAPXML_CHECK_DUPLICATES', 'true', 'true - check duplicates,<br />mysql - check duplicates using mySQL (used to store a large number of products),<br />false - don\'t check duplicates', @gid, 10, now(), now(), '', 'zen_cfg_select_option(array(\'true\', \'mysql\', \'false\'),'),
 ('Active plugins', 'SITEMAPXML_PLUGINS', 'sitemapxml_categories.php;sitemapxml_ezpages.php;sitemapxml_mainpage.php;sitemapxml_manufacturers.php;sitemapxml_products.php;sitemapxml_products_reviews.php;sitemapxml_reviews.php', 'What plug-ins from existing uses to generate the site map', @gid, 11, now(), now(), '', 'zen_cfg_read_only('),
-('Ping urls', 'SITEMAPXML_PING_URLS', 'Google => http://www.google.com/webmasters/sitemaps/ping?sitemap=%s;\r\nBing => http://www.bing.com/webmaster/ping.aspx?siteMap=%s', 'List of pinging urls separated by ;', @gid, 12, now(), now(), '', 'zen_cfg_textarea('),
 ('Home page order by', 'SITEMAPXML_HOMEPAGE_ORDERBY', 'sort_order ASC', '', @gid, 13, now(), now(), '', ''),
 ('Home page changefreq', 'SITEMAPXML_HOMEPAGE_CHANGEFREQ', 'weekly', 'How frequently the Home page is likely to change.', @gid, 14, now(), now(), '', 'zen_cfg_select_option(array(\'no\', \'always\', \'hourly\', \'daily\', \'weekly\', \'monthly\', \'yearly\', \'never\'),'),
 ('Products order by', 'SITEMAPXML_PRODUCTS_ORDERBY', 'products_sort_order ASC, last_date DESC', '', @gid, 15, now(), now(), '', ''),

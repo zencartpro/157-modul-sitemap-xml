@@ -1,14 +1,14 @@
 <?php
 /**
- * Part of the News Box Manager plugin, re-structured for Zen Cart v1.5.6 and later by lat9.
- * Copyright (C) 2015-2022, Vinos de Frutas Tropicales
+ * Part of the News Box Manager plugin, re-structured for Zen Cart v1.5.8 and later by lat9.
+ * Copyright (C) 2015-2024, Vinos de Frutas Tropicales
  * Do Not Remove: Coded for Zen-Cart by geeks4u.com
  * Dedicated to Memory of Amelita "Emmy" Abordo Gelarderes
  * @copyright Copyright 2003-2022 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sitemapxml_boxnews3.php 2022-06-07 07:35:16Z webchills $
+ * @version $Id: sitemapxml_boxnews3.php 2024-02-16 08:35:16Z webchills $
  */
  
 // -----
@@ -39,9 +39,8 @@ if ($sitemapXML->SitemapOpen('boxnews', $last_date)) {
             AND nc.news_title != ''" .
           (SITEMAPXML_BOXNEWS_ORDERBY != '' ? "ORDER BY " . SITEMAPXML_BOXNEWS_ORDERBY : ''));
     $sitemapXML->SitemapSetMaxItems($news->RecordCount());
-    while (!$news->EOF) {
-        $sitemapXML->writeItem(FILENAME_ARTICLE, 'p=' . $news->fields['box_news_id'], $news->fields['language_id'], $news->fields['last_date'], SITEMAPXML_BOXNEWS_CHANGEFREQ);
-        $news->MoveNext();
+    foreach ($news as $next_news) {
+        $sitemapXML->writeItem(FILENAME_ARTICLE, 'p=' . next_news['box_news_id'], $next_news['language_id'], $next_news['last_date'], SITEMAPXML_BOXNEWS_CHANGEFREQ);
     }
     $sitemapXML->SitemapClose();
 }

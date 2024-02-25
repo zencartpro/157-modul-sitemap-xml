@@ -13,7 +13,7 @@ define('TEXT_FAILED_TO_CREATE', 'Unable to create file "%s". You may need to use
 define('TEXT_FAILED_TO_CHMOD', 'File "%s" is Read-Only. You may need to use your webhost control panel/file-manager to change the permissions effectively.');
 define('TEXT_HEAD_SITEMAP_INDEX', 'Sitemap Index');
 define('TEXT_HEAD_SITEMAP_INDEX_NONE', 'Sitemap Index not generated: no sitemaps found (no plugins selected)');
-define('TEXT_HEAD_PING', 'Ping');
+
 define('TEXT_ERROR_CURL_NOT_FOUND', 'CURL functions not found - required for ping/checkURL functions');
 define('TEXT_ERROR_CURL_INIT', 'cURL Error: init cURL');
 define('TEXT_ERROR_CURL_EXEC', 'cURL Error: "<b>%s</b>" reading "%s"');

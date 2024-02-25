@@ -6,10 +6,10 @@
  * @package SitemapXML
  * @copyright Copyright 2007-2016 Andrew Berezin eCommerce-Service.com
  * @copyright Copyright 2005-2012 Serge Baccou http://sourceforge.net/projects/gstoolbox
- * @copyright Copyright 2003-2018 Zen Cart Development Team
+ * @copyright Copyright 2003-2014 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: gss.xsl 2018-10-24 17:20:21 webchills $
+ * @version $Id: gss.xsl 2024-02-19 15:20:21 webchills $
  */
 -->
 
@@ -25,7 +25,7 @@
 <html>
 <head>
 <title>Sitemap XML File</title>
-<style type="text/css">
+<style>
 <![CDATA[
 h1 {
   font-weight:bold;
@@ -69,7 +69,7 @@ p.sml {
 }
 ]]>
 </style>
-<script type="text/javascript">
+<script>
 <![CDATA[
 var selectedColor = "blue";
 var defaultColor = "black";
