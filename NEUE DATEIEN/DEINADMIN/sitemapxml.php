@@ -7,10 +7,13 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml.php 2024-02-25 17:51:18 webchills $
+ * @version $Id: sitemapxml.php 2024-03-22 16:25:18 webchills $
  */
 
 require 'includes/application_top.php';
+
+$sitemapindex_http_link = HTTP_CATALOG_SERVER . DIR_WS_CATALOG . SITEMAPXML_SITEMAPINDEX . '.xml';
+define('SITEMAPXML_SITEMAPINDEX_HTTP_LINK','$sitemapindex_http_link');
 
 $action = $_POST['action'] ?? '';
 
