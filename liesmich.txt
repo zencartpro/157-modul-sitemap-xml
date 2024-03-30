@@ -8,13 +8,13 @@ Falls Zusatzmodule wie Testimonial Manager oder News Box Manager im Shop verwend
 
 Anpassung und Überarbeitung des Moduls Sitemap XML 3.9.5 von Andrew Berezin zur Verwendung in der deutschen Zen Cart Version 1.5.7
 
-Dieses Modul setzt mindestens Zen Cart 1.5.7g deutsch voraus!
+Dieses Modul setzt mindestens Zen Cart 1.5.7h deutsch voraus!
 
 
 Changelog:
 
 Version 4.2.0
-webchills - Februar 2024
+webchills - März 2024
 
 Anpassungen für 1.5.7h und PHP 8.2.x
 Ping Funktionalität entfernt, da von den Suchmaschinen nicht mehr unterstützt

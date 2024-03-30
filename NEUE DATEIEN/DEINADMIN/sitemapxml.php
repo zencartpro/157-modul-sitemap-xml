@@ -7,13 +7,11 @@
  * @copyright Copyright 2003-2024 Zen Cart Development Team
  * @copyright Portions Copyright 2003 osCommerce
  * @license http://www.zen-cart-pro.at/license/2_0.txt GNU Public License V2.0
- * @version $Id: sitemapxml.php 2024-03-22 16:25:18 webchills $
+ * @version $Id: sitemapxml.php 2024-03-30 10:53:18 webchills $
  */
 
 require 'includes/application_top.php';
 
-$sitemapindex_http_link = HTTP_CATALOG_SERVER . DIR_WS_CATALOG . SITEMAPXML_SITEMAPINDEX . '.xml';
-define('SITEMAPXML_SITEMAPINDEX_HTTP_LINK','$sitemapindex_http_link');
 
 $action = $_POST['action'] ?? '';
 
@@ -131,12 +129,12 @@ if (!file_exists(DIR_FS_CATALOG . 'robots.txt')) {
     $robots_message = WARNING_SITEMAPXML_NO_ROBOTS_FILE;
 } else {
     $robots_txt_data = file_get_contents(DIR_FS_CATALOG . 'robots.txt');
-    if (strpos($robots_txt_data, 'Sitemap: ' . SITEMAPXML_SITEMAPINDEX_HTTP_LINK) === false) {
+    if (strpos($robots_txt_data, 'Sitemap: ') === false) {
         $robots_panel_class = 'danger';
-        $robots_message = sprintf(WARNING_SITEMAPXML_NO_ROBOTS_TEXT, SITEMAPXML_SITEMAPINDEX_HTTP_LINK);
+        $robots_message = WARNING_SITEMAPXML_NO_ROBOTS_TEXT;
     } else {
         $robots_panel_class = 'success';
-        $robots_message = sprintf(SUCCESS_SITEMAPXML_ROBOTS_TXT_OK, SITEMAPXML_SITEMAPINDEX_HTTP_LINK);
+        $robots_message = SUCCESS_SITEMAPXML_ROBOTS_TXT_OK;
     }
     unset($robots_txt_data);
 }

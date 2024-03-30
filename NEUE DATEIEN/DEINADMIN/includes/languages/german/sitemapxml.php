@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sitemapxml.php 2024-02-25 18:57:16Z webchills $
+ * @version $Id: sitemapxml.php 2024-03-30 10:59:16Z webchills $
  */
 
 define('HEADING_TITLE', 'Sitemap XML');
@@ -17,9 +17,9 @@ define('ERROR_SITEMAPXML_TOKEN_INVALID_HDR', 'Sitemaps können nicht erzeugt wer
 define('ERROR_SITEMAPXML_TOKEN_INVALID_MESSAGE', 'Der angegebene Token (%1$s) enthält ungültige Zeichen.');
 
 define('TEXT_SITEMAPXML_ROBOTS_HDR','Ihre <code>robots.txt</code> Datei');
-define('SUCCESS_SITEMAPXML_ROBOTS_TXT_OK','Ihre <code>robots.txt</code> verweist Suchmaschinen auf Ihre <code>%1$s</code> Sitemap XML!');
+define('SUCCESS_SITEMAPXML_ROBOTS_TXT_OK','Ihre <code>robots.txt</code> verweist Suchmaschinen auf Ihre Sitemap XML!');
 define('WARNING_SITEMAPXML_NO_ROBOTS_FILE','Ihr Shop hat keine <code>robots.txt</code> Datei! Suchmaschinen wissen daher nichts von Ihrer Sitemap.');
-define('WARNING_SITEMAPXML_NO_ROBOTS_TEXT','Ihre <code>robots.txt</code> Datei verweist nicht auf Ihre Sitemap XML Datei.Fügen Sie den Eintrag <code>Sitemap: %1$s</code> zu Ihrer robots.txt Datei hinzu.');
+define('WARNING_SITEMAPXML_NO_ROBOTS_TEXT','Ihre <code>robots.txt</code> Datei verweist nicht auf Ihre Sitemap XML Datei.Fügen Sie den Eintrag <code>Sitemap: https://www.meinshop.de/sitemap.xml</code> zu Ihrer robots.txt Datei hinzu.');
 
 define('TEXT_SITEMAPXML_PLUGINS_LIST', 'Sitemap Plugins');
 define('TEXT_SITEMAPXML_PLUGINS_LIST_SELECT', 'Wählen Sie die zu erstellenden Sitemaps');
@@ -71,5 +71,6 @@ define('TEXT_SITEMAPXML_TIPS_TEXT', '<p>Informationen zum Thema Sitemaps finden 
         <samp>0 5 * * * GET \'https://your_domain/index.php?main_page=sitemapxml&amp;rebuild=yes%1$s\'</samp><br>
         <samp>0 5 * * * wget -q \'https://your_domain/index.php?main_page=sitemapxml&amp;rebuild=yes%1$s\' -O /dev/null</samp><br>
         <samp>0 5 * * * curl -s \'https://your_domain/index.php?main_page=sitemapxml&amp;rebuild=yes%1$s\'</samp><br>
-        <samp>0 5 * * * php -f &lt;path to shop&gt;/cgi-bin/sitemapxml.php rebuild=yes%2$s</samp><br>');
+        <samp>0 5 * * * php -f &lt;path to shop&gt;/cgi-bin/sitemapxml.php rebuild=yes%2$s</samp><br>'); 
+
 
