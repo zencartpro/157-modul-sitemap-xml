@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sitemapxml_reviews.php 2024-02-19 15:32:16Z webchills $
+ * @version $Id: sitemapxml_reviews.php 2024-12-12 10:13:16Z webchills $
  */
 
 echo '<h3>' . TEXT_HEAD_REVIEWS . '</h3>';
@@ -29,7 +29,13 @@ if ($sitemapXML->SitemapOpen('reviews', $last_date)) {
     );
     $sitemapXML->SitemapSetMaxItems($reviews->RecordCount());
     foreach ($reviews as $next_review) {
-        $sitemapXML->writeItem(FILENAME_PRODUCT_REVIEWS_INFO, 'products_id=' . $next_review['products_id'] . '&reviews_id=' . $next_review['reviews_id'], $next_review['language_id'], $next_review['last_date'], SITEMAPXML_REVIEWS_CHANGEFREQ);
+        $sitemapXML->writeItem(
+            FILENAME_PRODUCT_REVIEWS_INFO,
+            'products_id=' . $next_review['products_id'] . '&reviews_id=' . $next_review['reviews_id'],
+            $next_review['language_id'],
+            $next_review['last_date'] ?? $last_date,
+            SITEMAPXML_REVIEWS_CHANGEFREQ
+        );
     }
 
     $sitemapXML->SitemapClose();

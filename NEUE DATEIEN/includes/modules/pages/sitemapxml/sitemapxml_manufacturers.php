@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sitemapxml_manufacturers.php 2024-02-19 15:37:16Z webchills $
+ * @version $Id: sitemapxml_manufacturers.php 2024-12-12 10:37:16Z webchills $
  */
 
 echo '<h3>' . TEXT_HEAD_MANUFACTURERS . '</h3>';
@@ -38,7 +38,14 @@ if ($sitemapXML->SitemapOpen('manufacturers', $last_date)) {
             ];
             $xtra = $sitemapXML->imagesTags($images, SITEMAPXML_MANUFACTURERS_IMAGES_CAPTION, SITEMAPXML_MANUFACTURERS_IMAGES_LICENSE);
         }
-        $sitemapXML->writeItem(FILENAME_DEFAULT, 'manufacturers_id=' . $next_manufacturer['manufacturers_id'], $next_manufacturer['languages_id'], $next_manufacturer['last_date'], SITEMAPXML_MANUFACTURERS_CHANGEFREQ, $xtra);
+        $sitemapXML->writeItem(
+            FILENAME_DEFAULT,
+            'manufacturers_id=' . $next_manufacturer['manufacturers_id'],
+            $next_manufacturer['languages_id'],
+            $next_manufacturer['last_date'] ?? $last_date,
+            SITEMAPXML_MANUFACTURERS_CHANGEFREQ,
+            $xtra
+        );
     }
 
     $sitemapXML->SitemapClose();

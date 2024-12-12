@@ -1,5 +1,5 @@
 ##################################################################################
-# UNINSTALL Sitemap XML 4.2.0 - 2024-02-25 - webchills
+# UNINSTALL Sitemap XML 4.2.1 - 2024-12-12 - webchills
 # UNINSTALL - NUR AUSFÜHREN WENN SIE DAS MODUL KOMPLETT ENTFERNEN WOLLEN!
 ##################################################################################
 

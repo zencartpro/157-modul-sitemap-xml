@@ -6,7 +6,7 @@
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sitemapxml.php 2024-02-19 15:37:16Z webchills $
+ * @version $Id: sitemapxml.php 2024-12-12 10:16:16Z webchills $
  */
 
 zen_define_default('TABLE_SITEMAPXML_TEMP', DB_PREFIX . 'sitemapxml_temp');
@@ -124,7 +124,13 @@ class zen_SiteMapXML
             'languages_code' => $_SESSION['languages_code'],
         ];
         $languagesIDsArray  = [];
-        foreach ($lng->catalog_languages as $language) {
+        // -----
+        // The language::catalog_languages is deprecated since 1.5.7i, so
+        // retrieve the languages via the zc200+ method, if present, else
+        // the prior versions' public array.
+        //
+        $catalog_languages = (method_exists($lng, 'get_languages_by_code')) ? $lng->get_languages_by_code() : $lng->catalog_languages; 
+        foreach ($catalog_languages as $language) {
             $this->languages[$language['id']] = [
                 'directory' => $language['directory'],
                 'id' => $language['id'],
@@ -132,7 +138,7 @@ class zen_SiteMapXML
             ];
             $languagesIDsArray[] = $language['id'];
             if ($language['code'] === DEFAULT_LANGUAGE) {
-                $this->default_language_id = $language['id'];
+                $this->default_language_id = (int)$language['id'];
             }
         }
         if (SITEMAPXML_USE_ONLY_DEFAULT_LANGUAGE === 'true') {
@@ -289,7 +295,7 @@ class zen_SiteMapXML
 
         if ($this->sitemapFileItems >= $this->sitemapxml_max_entries || ($this->sitemapFileSize + strlen($itemRecord)) >= $this->sitemapxml_max_size) {
             $this->_SitemapCloseFile();
-            $this->sitemapFileName = $this->_getNameFileXML($this->sitemapFile . str_pad($this->sitemapFileNameNumber, 3, '0', STR_PAD_LEFT));
+            $this->sitemapFileName = $this->_getNameFileXML($this->sitemapFile . str_pad((string)$this->sitemapFileNameNumber, 3, '0', STR_PAD_LEFT));
             if (!$this->_fileOpen($this->sitemapFileName)) {
                 return false;
             }
@@ -819,6 +825,10 @@ class zen_SiteMapXML
 
     protected function _fileSize(string $fn): int
     {
+        if (!file_exists($fn)) {
+            return 0;
+        }
+
         clearstatcache();
         return (int)filesize($fn);
     }
