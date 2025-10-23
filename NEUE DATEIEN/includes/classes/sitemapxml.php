@@ -2,11 +2,11 @@
 /**
  * package Sitemap XML
  * @copyright Copyright 2005-2016 Andrew Berezin eCommerce-Service.com
- * @copyright Copyright 2003-2024 Zen Cart Development Team
+ * @copyright Copyright 2003-2025 Zen Cart Development Team
  * Zen Cart German Version - www.zen-cart-pro.at
  * @copyright Portions Copyright 2003 osCommerce
  * @license https://www.zen-cart-pro.at/license/3_0.txt GNU General Public License V3.0
- * @version $Id: sitemapxml.php 2024-12-12 10:16:16Z webchills $
+ * @version $Id: sitemapxml.php 2025-10-23 13:25:16Z webchills $
  */
 
 zen_define_default('TABLE_SITEMAPXML_TEMP', DB_PREFIX . 'sitemapxml_temp');
@@ -217,7 +217,7 @@ class zen_SiteMapXML
 
     public function writeItem($link, $parms = '', $language_id = 0, $lastmod = '', $changefreq = '', $xtra = '')
     {
-        if ($lastmod !== '') {
+        if (!empty($lastmod)) {
             $lastmod = strtotime($lastmod);
         }
 
@@ -455,7 +455,10 @@ class zen_SiteMapXML
     // ZC Sniffer class already offers this feature.
     public function dbTableExist(string $table): bool
     {
-        return $GLOBALS['sniffer']->table_exists($table);
+        if (!defined($table) || empty(constant($table))) {
+            return false;
+        }
+        return $GLOBALS['sniffer']->table_exists(constant($table));
     }
 
     // ZC Sniffer class already offers this feature.
